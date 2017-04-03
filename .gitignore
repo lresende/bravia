@@ -1,2 +1,11 @@
-node_modules
+# Application configuration files
 /config.json
+
+# Node modules
+node_modules
+
+# Intellij
+.idea/
+.idea_modules/
+*.iml
+*.iws
