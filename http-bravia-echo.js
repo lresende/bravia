@@ -1,12 +1,22 @@
 const http = require('http')
 var express = require('express');
 var bravia = require('./lib');
+var config = require('./config.json');
 
 var app = express();
+var basicAuth = require('express-basic-auth');
 
-const port = 5006
-const tvIP = '192.1.168.100'
-const pskKey = '0000'
+const port = config.port
+const tvIP = config.tvIP
+const pskKey = config.psKey
+const username = config.username
+const password = config.password
+
+app.use(basicAuth( { authorizer: customAuthorizer, challenge: true } ))
+
+function customAuthorizer(providedUsername, providedPassword) {
+    return username == providedUsername && password == providedPassword
+}
 
 // Set up the server
 app.get('/:intent', function (req, res) {
@@ -31,5 +41,6 @@ app.get('/:intent', function (req, res) {
 
 // Set up the port listener
 app.listen(port, function () {
-  console.log('Example app listening on port ' + port + '!');
+  console.log('TV Service listening on port ' + port + '!');
+  console.log('Controling TV at : ' + tvIP);
 });

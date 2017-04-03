@@ -1,0 +1,7 @@
+{
+    "port" : 5006,
+    "tvIP" : "192.1.168.100",
+    "psKey" : "0000",
+    "username" : "foo",
+    "password" : "foopassword"
+}
