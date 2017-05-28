@@ -1,6 +1,6 @@
 const http = require('http')
 var express = require('express');
-var bravia = require('./lib');
+var bravia = require('./lib/bravia.js');
 var config = require('./config.json');
 
 var app = express();
