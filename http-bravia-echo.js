@@ -15,28 +15,28 @@ const password = config.password
 app.use(basicAuth( { authorizer: customAuthorizer, challenge: true } ))
 
 function customAuthorizer(providedUsername, providedPassword) {
-    return username == providedUsername && password == providedPassword
+    return username == providedUsername && password == providedPassword;
 }
 
 // Set up the server
 app.get('/:intent', function (req, res) {
 
-	// Get the intent 
-	var intent = req.params.intent;
-  	
-  	// Confirm the intent
-  	console.log('Running ' + intent);
+    // Get the intent
+    var intent = req.params.intent;
 
-  	// Call the Bravia function. 
-  	bravia(tvIP, pskKey, function(client) {
+    // Confirm the intent
+    console.log('Running ' + intent);
 
-      // Call a command
-  	  client.exec(intent);
+    // Call the Bravia function.
+    bravia(tvIP, pskKey, function (client) {
 
-      // Send back the ok status.
-      res.sendStatus(200);
+        // Call a command
+        client.exec(intent);
 
-  	});
+        // Send back the ok status.
+        res.sendStatus(200);
+
+    });
 });
 
 // Set up the port listener
